@@ -270,9 +270,13 @@ function showMsg(){
 
 function hideNubi(){
   overlay.style.opacity = 0;
-  overlay.style.pointerEvents = "none"; /* 🔥 */
+  overlay.style.pointerEvents = "none";
+
   container.style.opacity = 0;
-}
+  container.style.pointerEvents = "none";
+
+  setTimeout(()=>{
+    container.style.display = "none"; //
 
 /* iniciar */
 window.onload = ()=>{
