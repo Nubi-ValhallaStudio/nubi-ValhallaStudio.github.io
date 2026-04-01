@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nubi</title>
-
+  
+<link rel="preload" as="image" href="imagenes/banner2.png">
+  
 <style>
 :root {
   --bg: #dbe3ec;
@@ -179,7 +181,7 @@ body {
 
 <!-- Banner -->
 <div class="banner">
-  <img src="imagenes/banner.png">
+ <img src="imagenes/banner.png" id="bannerImg">
 </div>
 
 <!-- Bienvenida -->
@@ -294,11 +296,21 @@ function toggleInfo(id){
 function empresa(){
   window.open("https://wa.me/50584627889?text=Me%20interesa%20el%20modo%20empresarial");
 }
+function cambiarBanner(){
+  const img = document.getElementById("bannerImg");
 
+  if(document.body.className === "dark" || document.body.className === "amoled"){
+    img.src = "imagenes/banner2.png";
+  } else {
+    img.src = "imagenes/banner.png";
+  }
+}
+  
 /* MODO */
 let mode = 0;
 modoBtn.onclick = ()=>{
   mode++;
+
   if(mode==1){
     document.body.className="dark";
   } else if(mode==2){
@@ -307,6 +319,8 @@ modoBtn.onclick = ()=>{
     document.body.className="";
     mode=0;
   }
+
+  cambiarBanner(); //CAMBIO CLAVE
 };
 
 </script>
