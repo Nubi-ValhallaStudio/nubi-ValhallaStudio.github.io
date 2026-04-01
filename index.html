@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nubi</title>
+
+<style>
+:root {
+  --bg: #dbe3ec;
+  --card: #c8d6e5;
+  --text: #000;
+  --btn: #7fa1c3;
+  --line: #9fb3c8;
+}
+
+.dark {
+  --bg: #1e2732;
+  --card: #2a3542;
+  --text: #fff;
+  --btn: #3b4c5e;
+  --line: #3b4c5e;
+}
+
+.amoled {
+  --bg: #000;
+  --card: #111;
+  --text: #fff;
+  --btn: #111;
+  --line: #333;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Banner */
+.banner img {
+  width: 100%;
+}
+
+/* Secciones */
+.section {
+  text-align: center;
+  padding: 15px;
+}
+
+.card {
+  background: var(--card);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 10px 20px;
+}
+
+/* Botones */
+.btn {
+  width: 80%;
+  margin: 10px auto;
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--btn);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Leer más */
+.more {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* Info */
+.info-box {
+  display: none;
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--card);
+}
+
+/* Contacto */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.contact-btn img {
+  width: 22px;
+}
+
+/* Modo */
+#modoBtn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  z-index: 2000;
+}
+
+/* Overlay (ARREGLADO) */
+#overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none; /* 🔥 CLAVE */
+  transition: 0.5s;
+}
+
+/* Nubi */
+#nubi-container {
+  position: fixed;
+  top: 35%;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: 1s;
+  z-index: 1001;
+}
+
+#nubi {
+  width: 90px;
+}
+
+#bubble {
+  background: var(--btn);
+  color: white;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 200px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<img src="imagenes/modo_oscuro.png" id="modoBtn">
+
+<!-- NUBI -->
+<div id="overlay"></div>
+
+<div id="nubi-container">
+  <div id="bubble"></div>
+  <img src="imagenes/nubi.png">
+</div>
+
+<!-- Banner -->
+<div class="banner">
+  <img src="imagenes/banner.png">
+</div>
+
+<!-- Bienvenida -->
+<div class="section">
+  <b>Bienvenido a Nubi ☁️</b><br>
+  Creamos páginas web modernas para estudiantes.
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+  No uses papel ni PDF tradicionales. Destaca con una web.
+</div>
+
+<div class="divider"></div>
+
+<!-- BOTONES -->
+<div class="btn" onclick="window.location.href='formulario_comun.html'">
+  Página común
+</div>
+<div class="more" onclick="toggleInfo('i1')">▾</div>
+<div id="i1" class="info-box">
+  Página común: imágenes, texto e iconos estilo presentación.
+</div>
+
+<div class="btn" onclick="window.location.href='formulario_pro.html'">
+  Página pro
+</div>
+<div class="more" onclick="toggleInfo('i2')">▾</div>
+<div id="i2" class="info-box">
+  Este modo posee texto, imágenes, videos, banners, iconos, botones y mucho más.
+</div>
+
+<div class="btn" onclick="empresa()">
+  Empresarial
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+  Implementamos tecnología en el sistema académico.  
+  Destaca con una página web profesional.
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACTO -->
+<div class="card">
+  <div class="contact-btn" onclick="empresa()">
+    <img src="imagenes/whatsapp.png"> Whatsapp
+  </div>
+
+  <div class="contact-btn" onclick="window.open('https://facebook.com')">
+    <img src="imagenes/facebook.png"> Facebook
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer" onclick="window.location.href='valhalla-tudio.html'">
+  Nubi by <br><b>Valhalla Studio©</b>
+</div>
+
+<script>
+
+/* NUBI */
+const messages = [
+"¡Hola! Soy Nubi ☁️",
+"Te enseñaré cómo pedir tu página",
+"Elige el tipo que necesitas"
+];
+
+let i = 0;
+
+const bubble = document.getElementById("bubble");
+const overlay = document.getElementById("overlay");
+const container = document.getElementById("nubi-container");
+
+function showMsg(){
+  if(i < messages.length){
+    bubble.innerText = messages[i];
+    bubble.style.opacity = 1;
+    i++;
+    setTimeout(showMsg, 2500);
+  } else hideNubi();
+}
+
+function hideNubi(){
+  overlay.style.opacity = 0;
+  overlay.style.pointerEvents = "none"; /* 🔥 */
+  container.style.opacity = 0;
+}
+
+/* iniciar */
+window.onload = ()=>{
+  setTimeout(()=>{
+    overlay.style.opacity = 1;
+    overlay.style.pointerEvents = "auto"; /* 🔥 */
+    container.style.opacity = 1;
+    showMsg();
+  },500);
+};
+
+overlay.onclick = hideNubi;
+
+/* INFO */
+function toggleInfo(id){
+  let el = document.getElementById(id);
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+/* WHATSAPP */
+function empresa(){
+  window.open("https://wa.me/50584627889?text=Me%20interesa%20el%20modo%20empresarial");
+}
+
+/* MODO */
+let mode = 0;
+modoBtn.onclick = ()=>{
+  mode++;
+  if(mode==1){
+    document.body.className="dark";
+  } else if(mode==2){
+    document.body.className="amoled";
+  } else {
+    document.body.className="";
+    mode=0;
+  }
+};
+
+</script>
+
+</body>
+</html>
