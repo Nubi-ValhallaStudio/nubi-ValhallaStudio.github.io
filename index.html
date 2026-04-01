@@ -272,17 +272,18 @@ function hideNubi(){
   overlay.style.opacity = 0;
   overlay.style.pointerEvents = "none";
 
-  container.style.opacity = 0;
+container.style.opacity = 0;
   container.style.pointerEvents = "none";
 
   setTimeout(()=>{
-    container.style.display = "none"; //
-
+    container.style.display = "none";
+  }, 500);
+}
 /* iniciar */
 window.onload = ()=>{
   setTimeout(()=>{
     overlay.style.opacity = 1;
-    overlay.style.pointerEvents = "auto"; /* 🔥 */
+    overlay.style.pointerEvents = "auto";
     container.style.opacity = 1;
     showMsg();
   },500);
