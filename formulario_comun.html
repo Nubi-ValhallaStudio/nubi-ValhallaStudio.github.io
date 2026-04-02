@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nubi Tail</title>
+
+<style>
+:root {
+  --bg: #dbe3ec;
+  --card: #c8d6e5;
+  --text: #000;
+  --btn: #7fa1c3;
+  --line: #9fb3c8;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Fondo animado ligero */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 40px,
+    rgba(0,0,0,0.03) 41px
+  );
+  animation: moveBg 10s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  from { transform: translateY(0); }
+  to { transform: translateY(100px); }
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.line {
+  border-top: 2px solid var(--line);
+  margin: 20px 0;
+}
+
+button {
+  background: var(--btn);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--btn);
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.whatsapp-btn img {
+  width: 16px;
+  height: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+<h1>BIENVENIDO</h1>
+
+<p>
+Soy <b>NUBI TAIL</b>, desarrollador independiente especializado en crear páginas web académicas claras, modernas y bien estructuradas.
+</p>
+
+<button onclick="playAudio()">▶</button>
+
+<p>
+¿Quieres destacar en tu presentación? 😏  
+Tranquilo, aquí vamos a ayudarte a que tu trabajo se vea como el de alguien que realmente sabe lo que hace.
+</p>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>🚀 ¿QUÉ INCLUYE TU PÁGINA?</h2>
+
+<p>Una página web completa y lista para presentar, con:</p>
+
+<ul>
+<li>Banners llamativos</li>
+<li>Textos bien organizados</li>
+<li>Imágenes de apoyo</li>
+<li>Videos integrados</li>
+<li>Enlaces (URL) confiables</li>
+</ul>
+
+<p>
+Y lo más importante:<br>
+Todo estructurado con fuentes confiables y base sólida, para que puedas demostrar seguridad y conocimiento frente a tu clase.
+</p>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>👥 ¿ES UN TRABAJO EN GRUPO?</h2>
+
+<p>Perfecto, incluso mejor 🔥</p>
+
+<ul>
+<li>Nombre de cada integrante</li>
+<li>Número o identificación</li>
+<li>Facultad o institución</li>
+<li>Logo oficial de tu centro educativo</li>
+<li>Todo bien presentado, limpio y profesional</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>💰 PRECIOS</h2>
+
+<p>No necesitas gastar mucho para tener algo de calidad.</p>
+
+<ul>
+<li>Plan Básico → 50 Córdobas</li>
+<li>Plan Pro → 100 Córdobas</li>
+<li>Plan Pro+ → 200 Córdobas</li>
+</ul>
+
+<p>💡 Todo se ajusta según lo que necesites.</p>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>⚠️ CONDICIONES</h2>
+
+<p>⏳ Tiempo de entrega: máximo 24 horas<br>
+(Avísame al menos con un día de anticipación)</p>
+
+<ul>
+<li>🧠 Todo es original, nada de copiar</li>
+<li>✍️ Sin uso de inteligencia artificial (aquí se trabaja de verdad 😉)</li>
+<li>🚫 No se realizan copias de páginas bancarias o redes sociales</li>
+<li>📎 Se entrega un código QR listo para usar en tu presentación</li>
+</ul>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<p>🌍 Las páginas son estáticas, alojadas en repositorios gratuitos (como GitHub), lo que permite:</p>
+
+<ul>
+<li>Acceso rápido ✅</li>
+<li>Sin costos de mantenimiento ✅</li>
+<li>Buena durabilidad ✅</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🎯 OBJETIVO</h2>
+
+<p>
+Que tu trabajo no sea uno más…<br>
+Sino uno que llame la atención, se entienda fácil y destaque.<br>
+Deja de usar papelógrafos y PDF tradicionales.
+</p>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>📲 MEDIO DE CONTACTO</h2>
+
+<p>Escríbeme por WhatsApp para coordinar tu página.</p>
+
+<a class="whatsapp-btn" href="https://wa.me/50584627889" target="_blank">
+<img src="imagenes/whatsapp.png">
+WHATSAPP
+</a>
+
+</div>
+
+</div>
+
+<audio id="audio" src="audios/Audio_pagina_comun.mp3"></audio>
+
+<script>
+function playAudio() {
+  const audio = document.getElementById("audio");
+  audio.play();
+}
+</script>
+
+</body>
+</html>
