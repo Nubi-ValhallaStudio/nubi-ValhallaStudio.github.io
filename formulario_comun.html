@@ -14,12 +14,21 @@
   --line: #9fb3c8;
 }
 
+.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e2e8f0;
+  --btn: #3b82f6;
+  --line: #334155;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  transition: 0.3s;
 }
 
 /* Fondo animado ligero */
@@ -38,15 +47,37 @@ body::before {
   z-index: -1;
 }
 
+.dark body::before {
+  background: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.05) 41px
+  );
+}
+
 @keyframes moveBg {
   from { transform: translateY(0); }
   to { transform: translateY(100px); }
 }
 
+/* Botón modo oscuro */
+.toggle-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: var(--btn);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+}
+
 .container {
   max-width: 800px;
   margin: auto;
-  padding: 20px;
+  padding: 60px 20px 20px;
 }
 
 .card {
@@ -55,10 +86,6 @@ body::before {
   border-radius: 12px;
   margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-h1 {
-  margin-top: 0;
 }
 
 .line {
@@ -72,15 +99,6 @@ button {
   padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-ul {
-  padding-left: 20px;
 }
 
 .whatsapp-btn {
@@ -91,7 +109,7 @@ ul {
   padding: 10px 15px;
   border-radius: 10px;
   text-decoration: none;
-  color: black;
+  color: var(--text);
   font-weight: bold;
 }
 
@@ -104,11 +122,12 @@ ul {
 
 <body>
 
+<button class="toggle-btn" onclick="toggleDark()">🌙</button>
+
 <div class="container">
 
 <div class="card">
 <h1>BIENVENIDO</h1>
-
 <p>
 Soy <b>NUBI TAIL</b>, desarrollador independiente especializado en crear páginas web académicas claras, modernas y bien estructuradas.
 </p>
@@ -125,9 +144,6 @@ Tranquilo, aquí vamos a ayudarte a que tu trabajo se vea como el de alguien que
 
 <div class="card">
 <h2>🚀 ¿QUÉ INCLUYE TU PÁGINA?</h2>
-
-<p>Una página web completa y lista para presentar, con:</p>
-
 <ul>
 <li>Banners llamativos</li>
 <li>Textos bien organizados</li>
@@ -135,87 +151,19 @@ Tranquilo, aquí vamos a ayudarte a que tu trabajo se vea como el de alguien que
 <li>Videos integrados</li>
 <li>Enlaces (URL) confiables</li>
 </ul>
-
-<p>
-Y lo más importante:<br>
-Todo estructurado con fuentes confiables y base sólida, para que puedas demostrar seguridad y conocimiento frente a tu clase.
-</p>
-</div>
-
-<div class="line"></div>
-
-<div class="card">
-<h2>👥 ¿ES UN TRABAJO EN GRUPO?</h2>
-
-<p>Perfecto, incluso mejor 🔥</p>
-
-<ul>
-<li>Nombre de cada integrante</li>
-<li>Número o identificación</li>
-<li>Facultad o institución</li>
-<li>Logo oficial de tu centro educativo</li>
-<li>Todo bien presentado, limpio y profesional</li>
-</ul>
 </div>
 
 <div class="card">
 <h2>💰 PRECIOS</h2>
-
-<p>No necesitas gastar mucho para tener algo de calidad.</p>
-
 <ul>
 <li>Plan Básico → 50 Córdobas</li>
 <li>Plan Pro → 100 Córdobas</li>
 <li>Plan Pro+ → 200 Córdobas</li>
 </ul>
-
-<p>💡 Todo se ajusta según lo que necesites.</p>
-</div>
-
-<div class="line"></div>
-
-<div class="card">
-<h2>⚠️ CONDICIONES</h2>
-
-<p>⏳ Tiempo de entrega: máximo 24 horas<br>
-(Avísame al menos con un día de anticipación)</p>
-
-<ul>
-<li>🧠 Todo es original, nada de copiar</li>
-<li>✍️ Sin uso de inteligencia artificial (aquí se trabaja de verdad 😉)</li>
-<li>🚫 No se realizan copias de páginas bancarias o redes sociales</li>
-<li>📎 Se entrega un código QR listo para usar en tu presentación</li>
-</ul>
-</div>
-
-<div class="line"></div>
-
-<div class="card">
-<p>🌍 Las páginas son estáticas, alojadas en repositorios gratuitos (como GitHub), lo que permite:</p>
-
-<ul>
-<li>Acceso rápido ✅</li>
-<li>Sin costos de mantenimiento ✅</li>
-<li>Buena durabilidad ✅</li>
-</ul>
 </div>
 
 <div class="card">
-<h2>🎯 OBJETIVO</h2>
-
-<p>
-Que tu trabajo no sea uno más…<br>
-Sino uno que llame la atención, se entienda fácil y destaque.<br>
-Deja de usar papelógrafos y PDF tradicionales.
-</p>
-</div>
-
-<div class="line"></div>
-
-<div class="card">
-<h2>📲 MEDIO DE CONTACTO</h2>
-
-<p>Escríbeme por WhatsApp para coordinar tu página.</p>
+<h2>📲 CONTACTO</h2>
 
 <a class="whatsapp-btn" href="https://wa.me/50584627889" target="_blank">
 <img src="imagenes/whatsapp.png">
@@ -230,8 +178,24 @@ WHATSAPP
 
 <script>
 function playAudio() {
-  const audio = document.getElementById("audio");
-  audio.play();
+  document.getElementById("audio").play();
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    localStorage.setItem("modo","oscuro");
+  } else {
+    localStorage.setItem("modo","claro");
+  }
+}
+
+// Mantener modo guardado
+window.onload = () => {
+  if(localStorage.getItem("modo") === "oscuro"){
+    document.body.classList.add("dark");
+  }
 }
 </script>
 
