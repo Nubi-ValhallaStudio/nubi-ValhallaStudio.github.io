@@ -27,8 +27,7 @@ body {
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  overflow-x: hidden;
-  transition: 0.3s;
+  transition: 0.4s;
 }
 
 /* Fondo animado ligero */
@@ -43,7 +42,7 @@ body::before {
     transparent 40px,
     rgba(0,0,0,0.03) 41px
   );
-  animation: moveBg 10s linear infinite;
+  animation: moveBg 12s linear infinite;
   z-index: -1;
 }
 
@@ -64,50 +63,55 @@ body::before {
 /* Botón modo oscuro */
 .toggle-btn {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 12px;
   background: var(--btn);
   border: none;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   z-index: 999;
 }
 
+/* Contenedor */
 .container {
   max-width: 800px;
   margin: auto;
-  padding: 60px 20px 20px;
+  padding: 70px 20px 20px;
 }
 
+/* Tarjetas */
 .card {
   background: var(--card);
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
+/* Línea */
 .line {
   border-top: 2px solid var(--line);
   margin: 20px 0;
 }
 
+/* Botones */
 button {
   background: var(--btn);
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
+/* WhatsApp */
 .whatsapp-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: var(--btn);
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-decoration: none;
   color: var(--text);
   font-weight: bold;
@@ -122,17 +126,18 @@ button {
 
 <body>
 
-<button class="toggle-btn" onclick="toggleDark()">🌙</button>
+<button id="toggleBtn" class="toggle-btn" onclick="toggleDark()">🌙</button>
 
 <div class="container">
 
 <div class="card">
 <h1>BIENVENIDO</h1>
+
 <p>
 Soy <b>NUBI TAIL</b>, desarrollador independiente especializado en crear páginas web académicas claras, modernas y bien estructuradas.
 </p>
 
-<button onclick="playAudio()">▶</button>
+<button id="audioBtn" onclick="toggleAudio()">▶</button>
 
 <p>
 ¿Quieres destacar en tu presentación? 😏  
@@ -151,16 +156,80 @@ Tranquilo, aquí vamos a ayudarte a que tu trabajo se vea como el de alguien que
 <li>Videos integrados</li>
 <li>Enlaces (URL) confiables</li>
 </ul>
+
+<p>
+Todo estructurado con fuentes confiables y base sólida, para que puedas demostrar seguridad y conocimiento frente a tu clase.
+</p>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>👥 ¿ES UN TRABAJO EN GRUPO?</h2>
+
+<p>Perfecto, incluso mejor 🔥</p>
+
+<ul>
+<li>Nombre de cada integrante</li>
+<li>Número o identificación</li>
+<li>Facultad o institución</li>
+<li>Logo oficial</li>
+<li>Presentación limpia y profesional</li>
+</ul>
 </div>
 
 <div class="card">
 <h2>💰 PRECIOS</h2>
+
 <ul>
 <li>Plan Básico → 50 Córdobas</li>
 <li>Plan Pro → 100 Córdobas</li>
 <li>Plan Pro+ → 200 Córdobas</li>
 </ul>
+
+<p>💡 Todo se ajusta según lo que necesites.</p>
 </div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>⚠️ CONDICIONES</h2>
+
+<p>⏳ Tiempo de entrega: máximo 24 horas</p>
+
+<ul>
+<li>🧠 Todo es original</li>
+<li>✍️ Sin uso de IA</li>
+<li>🚫 No copiar bancos o redes</li>
+<li>📎 QR listo para presentar</li>
+</ul>
+</div>
+
+<div class="line"></div>
+
+<div class="card">
+<h2>🌍 SOBRE LAS PÁGINAS</h2>
+
+<p>Las páginas son estáticas, alojadas en repositorios gratuitos como GitHub:</p>
+
+<ul>
+<li>Acceso rápido ✅</li>
+<li>Sin mantenimiento ✅</li>
+<li>Duraderas ✅</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🎯 OBJETIVO</h2>
+
+<p>
+Que tu trabajo no sea uno más…<br>
+Sino uno que destaque, se entienda fácil y llame la atención.<br>
+Deja atrás los PDF y papelógrafos.
+</p>
+</div>
+
+<div class="line"></div>
 
 <div class="card">
 <h2>📲 CONTACTO</h2>
@@ -177,24 +246,42 @@ WHATSAPP
 <audio id="audio" src="audios/audio_pagina_comun.mp3"></audio>
 
 <script>
-function playAudio() {
-  document.getElementById("audio").play();
+const audio = document.getElementById("audio");
+const btn = document.getElementById("audioBtn");
+const toggleBtn = document.getElementById("toggleBtn");
+
+function toggleAudio() {
+  if (audio.paused) {
+    audio.currentTime = 0;
+    audio.play();
+    btn.textContent = "⏸";
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    btn.textContent = "▶";
+  }
 }
+
+audio.onended = () => {
+  btn.textContent = "▶";
+};
 
 function toggleDark() {
   document.body.classList.toggle("dark");
 
   if(document.body.classList.contains("dark")){
     localStorage.setItem("modo","oscuro");
+    toggleBtn.textContent = "☀️";
   } else {
     localStorage.setItem("modo","claro");
+    toggleBtn.textContent = "🌙";
   }
 }
 
-// Mantener modo guardado
 window.onload = () => {
   if(localStorage.getItem("modo") === "oscuro"){
     document.body.classList.add("dark");
+    toggleBtn.textContent = "☀️";
   }
 }
 </script>
