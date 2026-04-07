@@ -1,334 +1,171 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nubi</title>
-  
-<link rel="preload" as="image" href="imagenes/banner2.png">
-  
+<title>Nubi App UI Pro</title>
 <style>
-:root {
-  --bg: #dbe3ec;
-  --card: #c8d6e5;
-  --text: #000;
-  --btn: #7fa1c3;
-  --line: #9fb3c8;
+:root{
+  --bg:#cfd9e6;
+  --card:rgba(255,255,255,0.3);
+  --text:#111;
+  --btn:#4f6f94;
+  --line:#9fb3c8;
 }
-
-.dark {
-  --bg: #1e2732;
-  --card: #2a3542;
-  --text: #fff;
-  --btn: #3b4c5e;
-  --line: #3b4c5e;
+.dark{
+  --bg:#0f1720;
+  --card:rgba(30,40,55,0.5);
+  --text:#fff;
+  --btn:#2f3f55;
+  --line:#2f3f55;
 }
-
-.amoled {
-  --bg: #000;
-  --card: #111;
-  --text: #fff;
-  --btn: #111;
-  --line: #333;
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.4s;
 }
-
-body {
-  margin: 0;
-  font-family: Arial;
-  background: var(--bg);
-  color: var(--text);
+header img{width:100%;height:145px;object-fit:cover;}
+.container{
+  max-width:700px;
+  margin:40px auto;
+  padding:25px;
+  border-radius:25px;
+  backdrop-filter:blur(18px);
+  background:var(--card);
+  box-shadow:0 25px 50px rgba(0,0,0,0.2);
 }
-
-/* Banner */
-.banner img {
-  width: 100%;
-}
-
-/* Secciones */
-.section {
-  text-align: center;
-  padding: 15px;
-}
-
-.card {
-  background: var(--card);
-  margin: 15px;
-  padding: 15px;
-  border-radius: 12px;
-}
-
-.divider {
-  height: 1px;
-  background: var(--line);
-  margin: 10px 20px;
-}
-
-/* Botones */
-.btn {
-  width: 80%;
-  margin: 10px auto;
-  padding: 12px;
-  border-radius: 20px;
-  background: var(--btn);
-  color: white;
-  text-align: center;
-  cursor: pointer;
-}
-
-/* Leer más */
-.more {
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  font-size: 14px;
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-/* Info */
-.info-box {
-  display: none;
-  width: 80%;
-  margin: auto;
-  padding: 10px;
-  border-radius: 10px;
-  background: var(--card);
-}
-
-/* Contacto */
-.contact-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 18px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.contact-btn img {
-  width: 22px;
-}
-
-/* Modo */
-#modoBtn {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  width: 30px;
-  z-index: 2000;
-}
-
-/* Overlay (ARREGLADO) */
-#overlay {
-  position: fixed;
-  top:0;
-  left:0;
+.section{margin-bottom:25px;opacity:0;transform:translateY(20px);transition:0.5s;}
+.section.show{opacity:1;transform:translateY(0);}
+label{font-weight:600;display:block;margin-bottom:6px;}
+input, textarea, select{
   width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.6);
-  opacity: 0;
-  z-index: 1000;
-  pointer-events: none; /* 🔥 CLAVE */
-  transition: 0.5s;
+  padding:14px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.2);
+  color:var(--text);
 }
-
-/* Nubi */
-#nubi-container {
-  position: fixed;
-  top: 35%;
-  right: 20px;
-  display: flex;
-  gap: 10px;
-  opacity: 1;
-  transition: 1s;
-  z-index: 1001;
+input::placeholder, textarea::placeholder{color:#888;}
+input:focus, textarea:focus{outline:none;box-shadow:0 0 12px var(--btn);} 
+button{
+  background:var(--btn);
+  color:#fff;
+  padding:15px;
+  border:none;
+  width:100%;
+  border-radius:16px;
+  font-size:16px;
 }
-
-#nubi {
-  width: 90px;
-}
-
-#bubble {
-  background: var(--btn);
-  color: white;
-  padding: 10px;
-  border-radius: 15px;
-  max-width: 200px;
-  opacity: 0;
-  transition: 0.5s;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 20px;
-  cursor: pointer;
+.footer{text-align:center;margin:60px 0;opacity:0.7;}
+.top-icons{position:fixed;top:10px;right:10px;display:flex;gap:10px;z-index:1000;}
+.top-icons img{width:28px;cursor:pointer;}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;flex-direction:column;color:#fff;transition:opacity 1.5s;}
+.fade-out{opacity:0;pointer-events:none;}
+.nubi{width:120px;animation:float 3s infinite ease-in-out;}
+@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
+.hidden{display:none;}
+@media (min-width:900px){
+  .container{max-width:800px;padding:40px;}
 }
 </style>
 </head>
+<body><header>
+<img src="imagenes/banner.png">
+</header><div class="top-icons">
+<img src="imagenes/modo_claro.png" id="modo">
+<img src="imagenes/perfil.png" id="perfil">
+<img src="imagenes/info.png" id="info">
+</div><div class="overlay" id="overlay">
+<img src="imagenes/nubi.png" class="nubi">
+<p id="texto"></p>
+</div><div class="container hidden" id="formulario"><div class="section">
+<label>💼 Nombre del trabajo</label>
+<input id="trabajo" placeholder="(trabajo, tema, contenido, unidad)">
+</div><div class="section">
+<label>📚 Materia</label>
+<input id="materia" list="materias" placeholder="(Biología / Ciencias...)">
+<datalist id="materias">
+<option value="Biología">
+<option value="Matemáticas">
+<option value="Historia">
+<option value="Ciencias de la educación">
+</datalist>
+</div><div class="section">
+<label>👥 Integrantes</label>
+<div id="integrantes"></div>
+<button onclick="add()">Agregar integ.</button>
+</div><div class="section">
+<label>🎓 Grado</label>
+<input id="grado" placeholder="(secundaria o universidad)">
+</div><div class="section">
+<label>🏫 Grupo</label>
+<input id="grupo" placeholder="(Grupo 2 / 10-G)">
+</div><div class="section">
+<label>👨‍🏫 Maestro</label>
+<input id="maestro" placeholder="(Lic. Vanessa)">
+</div><div class="section">
+<label>🏢 Institución</label>
+<input id="institucion" placeholder="(Nombre del colegio)">
+</div><div class="section">
+<label>🕒 Turno</label>
+<input id="turno" placeholder="(Matutino, sabatino...)">
+</div><div class="section">
+<label>📅 Fecha</label>
+<input id="fecha" placeholder="(19 octubre 2026)">
+</div><div class="section">
+<label>🌐 Información</label>
+<select id="tipo">
+<option value="Internet">Internet</option>
+<option value="PDF">PDF</option>
+</select>
+</div><div class="section">
+<label>📝 Extras</label>
+<textarea id="extra" placeholder="(indicaciones adicionales)"></textarea>
+</div><button onclick="send()">Enviar a WhatsApp</button>
 
-<body>
+<div class="footer">Valhalla Studio © 2026</div></div><script>
+let textos=["Hola, soy nubi , bienvenido","Rellena este formulario por favor"];
+let i=0, stop=false;
 
-<img src="imagenes/modo_oscuro.png" id="modoBtn">
+function show(){
+if(i<textos.length && !stop){
+document.getElementById('texto').innerText=textos[i++];
+setTimeout(show,2000);
+}else end();
+}
+function end(){
+document.getElementById('overlay').classList.add('fade-out');
+setTimeout(()=>{
+document.getElementById('overlay').classList.add('hidden');
+document.getElementById('formulario').classList.remove('hidden');
+animar();
+},1500);
+}
+document.addEventListener('click',()=>{stop=true;end();});
+show();
 
-<!-- NUBI -->
-<div id="overlay"></div>
-
-<div id="nubi-container">
-  <div id="bubble"></div>
-  <img src="imagenes/nubi.png" width="100">
-</div>
-
-<!-- Banner -->
-<div class="banner">
- <img src="imagenes/banner.png" id="bannerImg">
-</div>
-
-<!-- Bienvenida -->
-<div class="section">
-  <b>Bienvenido a Nubi ☁️</b><br>
-  Creamos páginas web modernas para estudiantes.
-</div>
-
-<div class="divider"></div>
-
-<div class="card">
-  No uses papel ni PDF tradicionales. Destaca con una web.
-</div>
-
-<div class="divider"></div>
-
-<!-- BOTONES -->
-<div class="btn" onclick="window.location.href='formulario_comun.html'">
-  Página común
-</div>
-<div class="more" onclick="toggleInfo('i1')">▾</div>
-<div id="i1" class="info-box">
-  Página común: imágenes, texto e iconos estilo presentación.
-</div>
-
-<div class="btn" onclick="window.location.href='formulario_pro.html'">
-  Página pro
-</div>
-<div class="more" onclick="toggleInfo('i2')">▾</div>
-<div id="i2" class="info-box">
-  Este modo posee texto, imágenes, videos, banners, iconos, botones y mucho más.
-</div>
-
-<div class="btn" onclick="empresa()">
-  Empresarial
-</div>
-
-<div class="divider"></div>
-
-<div class="card">
-  Implementamos tecnología en el sistema académico.  
-  Destaca con una página web profesional.
-</div>
-
-<div class="divider"></div>
-
-<!-- CONTACTO -->
-<div class="card">
-  <div class="contact-btn" onclick="empresa()">
-    <img src="imagenes/whatsapp.png"> Whatsapp
-  </div>
-
-  <div class="contact-btn" onclick="window.open('https://facebook.com')">
-    <img src="imagenes/facebook.png"> Facebook
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="footer" onclick="window.location.href='valhalla-tudio.html'">
-  Nubi by <br><b>Valhalla Studio©</b>
-</div>
-
-<script>
-
-/* NUBI */
-const messages = [
-"¡Hola! Soy Nubi ☁️",
-"Te enseñaré cómo pedir tu página",
-"Elige el tipo que necesitas"
-];
-
-let i = 0;
-
-const bubble = document.getElementById("bubble");
-const overlay = document.getElementById("overlay");
-const container = document.getElementById("nubi-container");
-
-function showMsg(){
-  if(i < messages.length){
-    bubble.innerText = messages[i];
-    bubble.style.opacity = 1;
-    i++;
-    setTimeout(showMsg, 2500);
-  } else hideNubi();
+function animar(){
+let sec=document.querySelectorAll('.section');
+sec.forEach((s,i)=>{
+setTimeout(()=>s.classList.add('show'), i*180);
+});
 }
 
-function hideNubi(){
-  overlay.style.opacity = 0;
-  overlay.style.pointerEvents = "none";
-
-container.style.opacity = 0;
-  container.style.pointerEvents = "none";
-
-  setTimeout(()=>{
-    container.style.display = "none";
-  }, 500);
-}
-/* iniciar */
-window.onload = ()=>{
-  setTimeout(()=>{
-    overlay.style.opacity = 1;
-    overlay.style.pointerEvents = "auto";
-    container.style.opacity = 1;
-    showMsg();
-  },500);
-};
-
-overlay.onclick = hideNubi;
-
-/* INFO */
-function toggleInfo(id){
-  let el = document.getElementById(id);
-  el.style.display = el.style.display === "block" ? "none" : "block";
+function add(){
+let input=document.createElement('input');
+input.placeholder='(Nombre del integrante)';
+document.getElementById('integrantes').appendChild(input);
 }
 
-/* WHATSAPP */
-function empresa(){
-  window.open("https://wa.me/50584627889?text=Me%20interesa%20el%20modo%20empresarial");
+function send(){
+let names=[...document.querySelectorAll('#integrantes input')].map(i=>i.value).join(', ');
+let msg=`Estas es la información y tus respuestas del formulario anterior, usamos este medio para facilitar tu trabajo y así enviarlo a este mismo medio de contacto, con esto tenemos más comodidad contigo, estudiante.\n\n💼 Trabajo: ${trabajo.value}\n📚 Materia: ${materia.value}\n👥 Integrantes: ${names}\n🎓 Grado: ${grado.value}\n🏫 Grupo: ${grupo.value}\n👨‍🏫 Maestro: ${maestro.value}\n🏢 Institución: ${institucion.value}\n🕒 Turno: ${turno.value}\n📅 Fecha: ${fecha.value}\n🌐 Tipo: ${tipo.value}\n📝 Extras: ${extra.value}\n\nEste metodo lo hemos elegido para obtener tu medio de contacto, de este forma es más eficiente, cómodo y nos ayuda a ajustar o modificar la información por si algo te ha echo falta.\n\nImportante: si elegiste que la información en la página es privada o especifica pueden mandarlo a este mismo medio de contacto.\n\n☁: Estamos trabajando en tú página, estará lista en 24hrs 🤗😉`;
+
+window.open("https://wa.me/50584627889?text="+encodeURIComponent(msg));
 }
-function cambiarBanner(){
-  const img = document.getElementById("bannerImg");
 
-  if(document.body.className === "dark" || document.body.className === "amoled"){
-    img.src = "imagenes/banner2.png";
-  } else {
-    img.src = "imagenes/banner.png";
-  }
-}
-  
-/* MODO */
-let mode = 0;
-modoBtn.onclick = ()=>{
-  mode++;
-
-  if(mode==1){
-    document.body.className="dark";
-  } else if(mode==2){
-    document.body.className="amoled";
-  } else {
-    document.body.className="";
-    mode=0;
-  }
-
-  cambiarBanner(); //CAMBIO CLAVE
-};
-
-</script>
-
-</body>
+let modo=document.getElementById('modo');
+modo.onclick=()=>document.body.classList.toggle('dark');
+</script></body>
 </html>
