@@ -56,7 +56,12 @@ button{
   width:100%;
   border-radius:16px;
   font-size:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
 }
+button img{width:20px;}
 .footer{text-align:center;margin:60px 0;opacity:0.7;}
 .top-icons{position:fixed;top:10px;right:10px;display:flex;gap:10px;z-index:1000;}
 .top-icons img{width:28px;cursor:pointer;}
@@ -71,7 +76,7 @@ button{
 </style>
 </head>
 <body><header>
-<img src="imagenes/banner.png">
+<img src="imagenes/banner.png" id="banner">
 </header><div class="top-icons">
 <img src="imagenes/modo_claro.png" id="modo">
 <img src="imagenes/perfil.png" id="perfil">
@@ -122,9 +127,9 @@ button{
 </div><div class="section">
 <label>📝 Extras</label>
 <textarea id="extra" placeholder="(indicaciones adicionales)"></textarea>
-</div><button onclick="send()">Enviar a WhatsApp</button>
-
-<div class="footer">Valhalla Studio © 2026</div></div><script>
+</div><button onclick="send()">
+<img src="imagenes/whatsapp.png"> Enviar a WhatsApp
+</button><div class="footer">Valhalla Studio © 2026</div></div><script>
 let textos=["Hola, soy nubi , bienvenido","Rellena este formulario por favor"];
 let i=0, stop=false;
 
@@ -166,6 +171,20 @@ window.open("https://wa.me/50584627889?text="+encodeURIComponent(msg));
 }
 
 let modo=document.getElementById('modo');
-modo.onclick=()=>document.body.classList.toggle('dark');
+let banner=document.getElementById('banner');
+modo.onclick=()=>{
+  document.body.classList.toggle('dark');
+  if(document.body.classList.contains('dark')){
+    modo.src="imagenes/modo_oscuro.png";
+    perfil.src="imagenes/perfil_mo.png";
+    info.src="imagenes/info_mo.png";
+    banner.src="imagenes/banner_mo.png";
+  }else{
+    modo.src="imagenes/modo_claro.png";
+    perfil.src="imagenes/perfil.png";
+    info.src="imagenes/info.png";
+    banner.src="imagenes/banner.png";
+  }
+};
 </script></body>
 </html>
